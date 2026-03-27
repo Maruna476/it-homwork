@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>список</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: lightgray;
+            margin: 5px auto;
+            padding: 5px;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background: red;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Мій список</h2>
+
+<input id="input" placeholder="Введіть текст">
+<br>
+<button onclick="add()">Додати</button>
+<button onclick="sortList()">Сортувати</button>
+
+<ul id="list"></ul>
+
+<script>
+function add() {
+    let value = document.getElementById("input").value;
+
+    if (value == "") {
+        alert("Введіть текст");
+        return;
+    }
+
+    let li = document.createElement("li");
+    li.innerHTML = value;
+
+    li.onclick = function() {
+        li.remove();
+    };
+
+    document.getElementById("list").appendChild(li);
+
+    document.getElementById("input").value = "";
+}
+
+function sortList() {
+    let list = document.getElementById("list");
+    let items = list.getElementsByTagName("li");
+
+    let arr = [];
+
+    for (let i = 0; i < items.length; i++) {
+        arr.push(items[i].innerHTML);
+    }
+
+    arr.sort();
+
+    list.innerHTML = "";
+
+    for (let i = 0; i < arr.length; i++) {
+        let li = document.createElement("li");
+        li.innerHTML = arr[i];
+
+        li.onclick = function() {
+            li.remove();
+        };
+
+        list.appendChild(li);
+    }
+}
+</script>
+
+</body>
+</html>
