@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Фільтрований список</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Мій список з фільтром</h2>
+
+<input id="inputItem" placeholder="Введіть текст">
+<button onclick="add()">Додати</button>
+
+<br>
+<input id="search" placeholder="Пошук..." oninput="filterList()">
+
+<select id="sortType" onchange="sortList()">
+    <option value="alpha">Сортувати по алфавіту</option>
+    <option value="date">Сортувати по даті</option>
+</select>
+
+<ul id="list"></ul>
+<div id="message"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
