@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список користувачів</title>
+</head>
+<body>
+
+<h2>Користувачі</h2>
+<ul id="userList"></ul>
+
+<script>
+    const userList = document.getElementById('userList');
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network error');
+            }
+            return response.json();
+        })
+        .then(users => {
+            users.forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = `${user.name} (${user.email})`;
+                userList.appendChild(li);
+            });
+        })
+        .catch(error => {
+            userList.innerHTML = '<li>Помилка завантаження</li>';
+            console.error(error);
+        });
+</script>
+
+</body>
+</html>
